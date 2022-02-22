@@ -20,23 +20,27 @@ function guessBtnCheck(){
         tooLowElem.innerHTML = 'Your guess is too low';
         tooHighElem.innerHTML = '';
         successElem.innerHTML = '';
+        newGameAlertElem.innerHTML = '';
 
     }else if(enteredValues > randomNumber){
         tooHighElem.innerHTML = 'Your guess is too high';
         tooLowElem.innerHTML = '';
         successElem.innerHTML = '';
+        newGameAlertElem.innerHTML = '';
+
     }else{
         successElem.innerHTML = `Correct, the secret number is ${enteredValues}!`;
         randomNumber = Math.ceil(Math.random()*100);
         tooHighElem.innerHTML = '';
         tooLowElem.innerHTML = '';
-    }
+        newGameAlertElem.innerHTML = '';
 
-    setTimeout (function(){
-        tooLowElem.innerHTML = '';
-        tooHighElem.innerHTML = '';
-        successElem.innerHTML = ``;
-    },2000)
+        setTimeout(function(){
+            newGameAlertElem.innerHTML = 'New game started!';
+            successElem.innerHTML = '';
+        },3000);
+    }
+    
 }
 
 // add event listener

@@ -43,3 +43,7 @@ h1{
 .success{
     color: green;
 }
+
+.newGameAlert{
+    color:antiquewhite;
+}
