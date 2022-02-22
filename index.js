@@ -1,7 +1,10 @@
 // reference html elements
 const guessedNumberElem = document.querySelector('.guessedNumber');
 const guessBtnElem = document.querySelector('.guessBtn');
-const messageElem = document.querySelector('.message');
+const tooLowElem = document.querySelector('.tooLow');
+const tooHighElem = document.querySelector('.tooHigh');
+const successElem = document.querySelector('.success');
+
 
 // create a random number
 let randomNumber = Math.ceil(Math.random()*100);
@@ -14,12 +17,18 @@ function guessBtnCheck(){
     console.log({guessedNumberElem,randomNumber});
 
     if(enteredValues < randomNumber){
-        messageElem.innerHTML = 'Your guess is too low';
-        messageElem.getElementsByClassName.color = 'red';
+        tooLowElem.innerHTML = 'Your guess is too low';
+        tooHighElem.innerHTML = '';
+        successElem.innerHTML = '';
+        // messageElem.getElementsByClassName.color = 'red';
     }else if(enteredValues > randomNumber){
-        messageElem.innerHTML = 'Your guess is too high';
+        tooHighElem.innerHTML = 'Your guess is too high';
+        tooLowElem.innerHTML = '';
+        successElem.innerHTML = '';
     }else{
-        messageElem.innerHTML = `Correct, the secret number is ${enteredValues}`;
+        successElem.innerHTML = `Correct, the secret number is ${enteredValues}!`;
+        tooHighElem.innerHTML = '';
+        tooLowElem.innerHTML = '';
     }
 }
 
