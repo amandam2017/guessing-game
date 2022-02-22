@@ -17,6 +17,14 @@ body{
     padding: 25px;
 }
 
+.btn-container{
+    text-align: center;
+}
+
+.message{
+    text-align: center;
+}
+
 h1{
     /* color: antiquewhite; */
     color: black;
