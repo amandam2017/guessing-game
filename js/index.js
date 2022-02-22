@@ -38,10 +38,28 @@ function guessBtnCheck(){
         setTimeout(function(){
             newGameAlertElem.innerHTML = 'New game started!';
             successElem.innerHTML = '';
-        },3000);
+        },5000);
+
+        // setTimeout(function(){
+        //     newGameAlertElem.innerHTML = '';
+        // },3000);
+
+        setTimeout(myTime, 8000);
+        
+
     }
+
+    
     
 }
+
+function myTime(){
+    newGameAlertElem.innerHTML = '';
+    
+}
+
+
+
 
 // add event listener
 
