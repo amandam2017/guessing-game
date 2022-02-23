@@ -16,6 +16,10 @@ function guessBtnCheck(){
     console.log(guessedNumberElem,randomNumber);
     console.log({guessedNumberElem,randomNumber});
 
+    if(enteredValues < 1 || enteredValues > 100){
+        tooLowElem.innerHTML = 'Please check your values should be not less than 1 and not more than 100'
+        return
+    }
     if(enteredValues < randomNumber){
         tooLowElem.innerHTML = 'Your guess is too low';
         tooHighElem.innerHTML = '';
