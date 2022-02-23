@@ -40,13 +40,8 @@ function guessBtnCheck(){
             successElem.innerHTML = '';
         },5000);
 
-        // setTimeout(function(){
-        //     newGameAlertElem.innerHTML = '';
-        // },3000);
-
         setTimeout(myTime, 8000);
         
-
     }
 
     

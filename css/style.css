@@ -8,9 +8,10 @@ body{
 
 .container{
     background-color: black;
-    width: 75%;
+    /* width: 75%;
+    margin: auto; */
     height: 450px;
-    margin: auto;
+
 }
 
 .inner__container{
