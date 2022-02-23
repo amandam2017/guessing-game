@@ -13,11 +13,12 @@ let randomNumber = Math.ceil(Math.random()*100);
 // function for logic
 function guessBtnCheck(){
     const enteredValues = guessedNumberElem.value;
+    console.log('entered number:' +enteredValues)
     console.log(guessedNumberElem,randomNumber);
     console.log({guessedNumberElem,randomNumber});
 
     if(enteredValues < 1 || enteredValues > 100){
-        tooLowElem.innerHTML = 'Please check your values should be not less than 1 and not more than 100'
+        tooLowElem.innerHTML = 'Your guess is out of range, please enter numbers between 1 - 100'
         return
     }
     if(enteredValues < randomNumber){
@@ -46,9 +47,7 @@ function guessBtnCheck(){
 
         setTimeout(myTime, 8000);
         
-    }
-
-    
+    }    
     
 }
 

@@ -44,14 +44,24 @@ for (let i = 0; i < countries.length; i++) {
 // create a function to get the value of the input field
 // add event lister in a button to do something on the btn click
 
-const addNewCountry = () => {
+const addNewCountry = (country) => {
+
     let countryList = document.createElement('li');
+    let content = document.createTextNode(country);
+
+    countryList.appendChild(content);
+    countryListElem.appendChild(countryList);
 
     let addedCountry = yourCountryElem.value;
 
+    console.log('added this:'+addedCountry)
+
+    if(addedCountry){
+        addedCountry = addedCountry.toUpperCase();
+        yourCountryElem.innerHTML = addedCountry;
+    }
+
     countryList.innerHTML = addedCountry;
-
-
 }
 
 addbtnElem.addEventListener('click', addNewCountry);
