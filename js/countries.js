@@ -1,6 +1,11 @@
 const countryListElem = document.querySelector('.countryList');
 const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
+let sortedCoutries = countries.sort();
+
+console.log(''+sortedCoutries);
 const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
+let sortedFlags = flags.sort();
+
 
 const addbtnElem = document.querySelector('.addbtn');
 const yourCountryElem = document.querySelector('.yourCountry');
@@ -21,13 +26,16 @@ const list=(country) =>{
     let content = document.createTextNode(country);
 
     countryList.appendChild(content);
+
     countryListElem.appendChild(countryList);
 }
 
 for (let i = 0; i < countries.length; i++) {
     const Flags = flags[i]
+    console.log(Flags)
 
     const myCountries = countries[i];
+    // used the template string to display both flags and countries
     let countriesAndFlags = `${Flags}  ${myCountries}`;
 
     list(countriesAndFlags);
@@ -43,25 +51,18 @@ for (let i = 0; i < countries.length; i++) {
 // reference button
 // create a function to get the value of the input field
 // add event lister in a button to do something on the btn click
+// add the added countries on the local storage
 
-const addNewCountry = (country) => {
-
-    let countryList = document.createElement('li');
-    let content = document.createTextNode(country);
-
-    countryList.appendChild(content);
-    countryListElem.appendChild(countryList);
+const addNewCountry = () => {
 
     let addedCountry = yourCountryElem.value;
 
-    console.log('added this:'+addedCountry)
-
     if(addedCountry){
-        addedCountry = addedCountry.toUpperCase();
+        addedCountry = addedCountry.charAt(0).toUpperCase() + addedCountry.slice(1);
         yourCountryElem.innerHTML = addedCountry;
     }
 
-    countryList.innerHTML = addedCountry;
+    list(addedCountry);
 }
 
 addbtnElem.addEventListener('click', addNewCountry);
