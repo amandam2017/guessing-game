@@ -2,7 +2,6 @@ const countryListElem = document.querySelector('.countryList');
 const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
 let sortedCoutries = countries.sort();
 
-console.log(''+sortedCoutries);
 const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
 let sortedFlags = flags.sort();
 
@@ -10,17 +9,15 @@ let sortedFlags = flags.sort();
 const addbtnElem = document.querySelector('.addbtn');
 const yourCountryElem = document.querySelector('.yourCountry');
 
+let countriesToStore = []; 
 
-//use map method to extract a list of countries
-// countryListElem.innerHTML = countries.map(function(myCountries){
-//     console.log(`countries: ${myCountries}`);
-//     return  `countries: ${myCountries}`;
-// });
+if(localStorage['storedCountries']);{
+    countriesToStore = JSON.parse(localStorage.getItem('storedCountries'));   
+}
 
-//this function creates and element li
-//step2: get the content
-//append the created li so that you can be able to display each country in an li
-// appendChild to display all countries in each li inside ul which is represented by countryListElem here
+// instance for my factory function 
+// let factFun = AddCountries(countriesToStore);
+
 const list=(country) =>{
     let countryList = document.createElement('li');
     let content = document.createTextNode(country);
@@ -32,26 +29,12 @@ const list=(country) =>{
 
 for (let i = 0; i < countries.length; i++) {
     const Flags = flags[i]
-    console.log(Flags)
-
     const myCountries = countries[i];
     // used the template string to display both flags and countries
     let countriesAndFlags = `${Flags}  ${myCountries}`;
 
     list(countriesAndFlags);
 }
-
-//  Last section add ability to add more countries
-
-//  add input for user to enter a country
-//  add button to add a country
-
-// JS
-// reference input filed
-// reference button
-// create a function to get the value of the input field
-// add event lister in a button to do something on the btn click
-// add the added countries on the local storage
 
 const addNewCountry = () => {
 
@@ -63,6 +46,11 @@ const addNewCountry = () => {
     }
 
     list(addedCountry);
-}
+
+};
+
+// set local storage
+let onStorageCountry = countries;
+localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
 
 addbtnElem.addEventListener('click', addNewCountry);

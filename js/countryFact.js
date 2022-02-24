@@ -1,8 +1,8 @@
 const AddCountries = () =>{
-    var MyCoutries = localData || [];
+    var MyCoutries = localSotageCountries || [];
 
-    const getCountries = () =>{
-        console.log('MyCoutries'+MyCoutries)
+    const getCountries = (addCountry) =>{
+        addCountry.push(MyCoutries);
         return MyCoutries;
     }
 
