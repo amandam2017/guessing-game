@@ -11,8 +11,8 @@ const yourFlagElem = document.querySelector('.yourFlag');
 
 let localSotageCountries = []; 
 
-if(localStorage['storedCountries']);{
-    localSotageCountries = JSON.parse(localStorage.getItem('storedCountries'));   
+if(localStorage['stotedFruits']);{
+    localSotageCountries = JSON.parse(localStorage.getItem('stotedFruits'));   
 }
 
 // factory instance
@@ -38,21 +38,24 @@ for (let i = 0; i < fruitNames.length; i++) {
 
 const addNewCountry = () => {
 
-    let addedCountry = yourCountryElem.value;
-    // let addedFlag = yourFlagElem.value
+    let addedFruit = yourCountryElem.value;
+    // let addedEmoji = yourFlagElem.value
 
-    if(addedCountry){
-        factFun.setCountries(addedCountry);
-        // addedCountry = addedCountry.charAt(0).toUpperCase() + addedCountry.slice(1);
-        countryListElem.innerHTML = factFun.addingFlagAndCountry(addedCountry);
+    if(addedFruit){
+        factFun.setCountries(addedFruit);
+        // addedFruit = addedFruit.charAt(0).toUpperCase() + addedFruit.slice(1);
+        // let display = countryListElem.innerHTML;
+       let display = factFun.addingFlagAndCountry(addedFruit);
+
+        list(display);
+
     }
  
-    list(countryListElem.innerHTML);
 
 // set local storage
 let onStorageCountry = factFun.getCountries();
 console.log(onStorageCountry);
-localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
+localStorage.setItem('stotedFruits', JSON.stringify(onStorageCountry));
 
 };
 

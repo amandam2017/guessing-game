@@ -2,10 +2,13 @@ const AddCountries = (StorageCountries) =>{
     let MyCoutries = StorageCountries || [];
 
     const setCountries = (addCountry) =>{
-        // addCountry = addCountry.charAt(0).toUpperCase() + addCountry.slice(1);
-        if(!MyCoutries.includes(addCountry)){
-            MyCoutries.push(addCountry);
+        if(addCountry){
+            addCountry = addCountry.charAt(0).toUpperCase() + addCountry.slice(1);
+            if(!MyCoutries.includes(addCountry)){
+                MyCoutries.push(addCountry);
+            }
         }
+        
         return;
     }
 
