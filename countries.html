@@ -11,18 +11,28 @@
 <body>
     <div class="container">
         <h1>Country flag list and add more countries</h1>
-        <ul class="countryList">
-        </ul>
 
         <div>
+            <label>Flag</label>
+            <input type="text" name="yourFlag" class="yourFlag" value="" placeholder="ARG">
             <label>Country</label>
             <input type="text" name="yourCountry" class="yourCountry" value="">
             <button class="addbtn btn btn-primary">ADD</button>
-            <!-- <ul class="countryList">
-            </ul> -->
+        </div>
+        <div>
+		    <select name="sortingCountries" class="mt-1 p-1" id="">
+                <option>
+                    sort
+                </option>
+            </select>
+        </div>
+
+        <div class="existingCountries">
+            <ul class="countryList">
+            </ul>
         </div>
     </div>
-
-<script src="js/countries.js"></script>    
+<script src="js/countryFact.js"></script>
+<script src="js/countries.js"></script>  
 </body>
 </html>

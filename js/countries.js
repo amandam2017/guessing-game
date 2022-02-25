@@ -1,22 +1,22 @@
 const countryListElem = document.querySelector('.countryList');
-const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
-let sortedCoutries = countries.sort();
-
-const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
-let sortedFlags = flags.sort();
+const fruitNames = ["Grapes", "Melon", "Watermelon", "Tangerine", "Lemon", "Banana", "Pineapple", "Mango", "Red Apple"];
+// let sortedCoutries = countries.sort();
+const fruits = ["🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎"];
+// let sortedFlags = flags.sort();
 
 
 const addbtnElem = document.querySelector('.addbtn');
 const yourCountryElem = document.querySelector('.yourCountry');
+const yourFlagElem = document.querySelector('.yourFlag');
 
-let countriesToStore = []; 
+let localSotageCountries = []; 
 
 if(localStorage['storedCountries']);{
-    countriesToStore = JSON.parse(localStorage.getItem('storedCountries'));   
+    localSotageCountries = JSON.parse(localStorage.getItem('storedCountries'));   
 }
 
-// instance for my factory function 
-// let factFun = AddCountries(countriesToStore);
+// factory instance
+let factFun = AddCountries(localSotageCountries);
 
 const list=(country) =>{
     let countryList = document.createElement('li');
@@ -27,30 +27,33 @@ const list=(country) =>{
     countryListElem.appendChild(countryList);
 }
 
-for (let i = 0; i < countries.length; i++) {
-    const Flags = flags[i]
-    const myCountries = countries[i];
+for (let i = 0; i < fruitNames.length; i++) {
+    const fruitEmoji = fruits[i]
+    const myFruitNames = fruitNames[i];
     // used the template string to display both flags and countries
-    let countriesAndFlags = `${Flags}  ${myCountries}`;
+    let fruitsAndEmojis = `${fruitEmoji}  ${myFruitNames}`;
 
-    list(countriesAndFlags);
+    list(fruitsAndEmojis);
 }
 
 const addNewCountry = () => {
 
     let addedCountry = yourCountryElem.value;
+    // let addedFlag = yourFlagElem.value
 
     if(addedCountry){
-        addedCountry = addedCountry.charAt(0).toUpperCase() + addedCountry.slice(1);
-        yourCountryElem.innerHTML = addedCountry;
+        factFun.setCountries(addedCountry);
+        // addedCountry = addedCountry.charAt(0).toUpperCase() + addedCountry.slice(1);
+        countryListElem.innerHTML = factFun.addingFlagAndCountry(addedCountry);
     }
-
-    list(addedCountry);
-
-};
+ 
+    list(countryListElem.innerHTML);
 
 // set local storage
-let onStorageCountry = countries;
+let onStorageCountry = factFun.getCountries();
+console.log(onStorageCountry);
 localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
+
+};
 
 addbtnElem.addEventListener('click', addNewCountry);
