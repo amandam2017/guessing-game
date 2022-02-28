@@ -21,21 +21,17 @@ const AddCountries = (localStorageCountries) =>{
     }
     
     const getCountries = () => {
-        var example = []
+        var arrayOfCoutries = []
         for (let i = 0; i < myFlags.length; i++) {
             const f = myFlags[i];
             const c = MyCoutries[i];
             let countriesAndEmojis = `${f}  ${c}`;
-example.push(countriesAndEmojis);
+            arrayOfCoutries.push(countriesAndEmojis);
         }
-        let countriesAndEmojis = `${myFlags}  ${MyCoutries}`;
-        console.log('???'+example)
+        // let countriesAndEmojis = `${myFlags}  ${MyCoutries}`;
+        console.log('???'+arrayOfCoutries)
 
-        return example;
-    }
-
-    const getFlags = () =>{
-        return myFlags;
+        return arrayOfCoutries;
     }
 
     const addingFlagAndCountry = (country) =>{
@@ -45,6 +41,14 @@ example.push(countriesAndEmojis);
 
             return newCountries += country;
         }
+    }
+
+    const sortingAsc = (order) =>{
+        return countries.sort();
+    }
+
+    const sortingDesc = (order) =>{
+        return countries.sort().reverse();
     }
 
     const addingFlags = (flags) =>{
@@ -59,8 +63,9 @@ example.push(countriesAndEmojis);
     return{
         setCountries,
         getCountries,
-        getFlags,
         addingFlagAndCountry,
-        addingFlags
+        addingFlags,
+        sortingAsc,
+        sortingDesc
     }
 }
