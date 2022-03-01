@@ -16,16 +16,19 @@
         <h1>Please paste a flag emoji and enter country name below</h1>
 
         <div class="inner-container">
-        <div>
+        <div class="form-row align-items-center"> 
+            <div class="col-sm-3 my-1">
             <p class="errors"></p>
             <label>Flag</label>
             <input type="emoji" name="yourFlag" class="yourFlag" value="" placeholder="ARG">
             <label>Country</label>
             <input type="text" name="yourCountry" class="yourCountry" value="">
-            <button class="addbtn btn btn-primary">ADD</button>
-        <!-- </div> -->
-        <!-- <div> -->
-		    <select name="sortingCountries" class="ascAndDscOrder" id="sortingCountries">
+            </div>
+            <div class="col-sm-3 my-1">
+                <button class="addbtn btn btn-primary">ADD</button>
+            </div>
+
+		    <select name="sortingCountries" class="ascAndDscOrder col-sm-3 my-1" id="sortingCountries">
                 <option disabled>Please order</option>
                 <option name="ascending" value="ascending">Ascending</option>
                 <option name="descending" value="descending">Descending</option>

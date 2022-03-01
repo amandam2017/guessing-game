@@ -21,3 +21,8 @@ h1{
 .inner-container{
     margin-top: 50px;
 }
+
+.my-1{
+    display: inline;
+    padding: 3px;
+}
