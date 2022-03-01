@@ -11,13 +11,12 @@ let sorted = flags.map((flag, index) => {
     
 })
 
-// console.log(sorted);
-
 // REFERENCE ELEMENTS
 const addbtnElem = document.querySelector('.addbtn');
 const yourCountryElem = document.querySelector('.yourCountry');
 const yourFlagElem = document.querySelector('.yourFlag');
-const sortingCountriesElem = document.getElementById('sortingCountries')
+const sortingCountriesElem = document.getElementById('sortingCountries');
+const errorsElem = document.querySelector('.errors');
 
 let localStorageCountries = []; 
 
@@ -46,45 +45,65 @@ for (let i = 0; i < countries.length; i++) {
     list(countriesAndEmojis);
 }
 
+const regex = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
+// const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
+console.log(flags.length);
+console.log(regex);
+console.log(regex.test(flags));
+// console.log(flags.match(regex));
+
 const addNewCountry = () => {
 
     let addedCountries = yourCountryElem.value;
     let addedEmoji = yourFlagElem.value
 
     if(addedCountries && addedEmoji){
-        factFun.setCountries(addedCountries);
-       let displayCountry = factFun.addingFlagAndCountry(addedCountries);
-       let displayFlags = factFun.addingFlags(addedEmoji);
+       if(regex.test(addedEmoji)){
+           if(!localStorageCountries.includes(addedEmoji)){
+            factFun.setCountries(addedCountries);
+            let displayCountry = factFun.addingCountry(addedCountries);
+            let displayFlags = factFun.addingFlags(addedEmoji);
+     
+             list(displayCountry + ' ' + displayFlags);
+     
+         // set local storage
+         let onStorageCountry = factFun.getCountries();
+         console.log(onStorageCountry.sort());
+         onStorageCountry.push(displayFlags + ' ' + displayCountry);
+         localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
 
-        list(displayCountry + ' ' + displayFlags);
+           }
 
+       }else{
+        errorsElem.innerHTML = 'Please insert flag emoji';
+       }
 
-    // set local storage
-    let onStorageCountry = factFun.getCountries();
-    console.log(onStorageCountry.sort());
-    onStorageCountry.push(displayFlags + ' ' + displayCountry);
-    localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
+    }else{
+        errorsElem.innerHTML = 'Please enter a country and paste flag imoji';
 
     }
 
 };
 
-const sorting = (selectedOrder) =>{
+const sorting = () =>{
 
     let ascOrder = sortingCountriesElem.value
     let discOrder = sortingCountriesElem.value
     // let dscOrder = document.querySelector("input[name ='descending']:checked");
-    console.log(ascOrder, selectedOrder.target.value);
+    // console.log(ascOrder, selectedOrder.target.value);
     if('ascending' === ascOrder){
         let selectedAscOrder = factFun.sortingAsc();
         console.log(selectedAscOrder)
         list(selectedAscOrder);
         
     } else if('descending' === discOrder){
-        let selectedAscOrder = factFun.sortingDesc();
-        list(selectedAscOrder);
+        let selectedDescOrder = factFun.sortingDesc();
+        console.log(selectedDescOrder)
+        list(selectedDescOrder);
     }
 }
+
+// const onLoad
 
 addbtnElem.addEventListener('click', addNewCountry);
 sortingCountriesElem.addEventListener('change', sorting);

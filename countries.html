@@ -9,10 +9,14 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <!-- <img src="flags.png"> -->
+    </header>
     <div class="container">
         <h1>Country flag list and add more countries</h1>
 
         <div>
+            <p class="errors"></p>
             <label>Flag</label>
             <input type="emoji" name="yourFlag" class="yourFlag" value="" placeholder="ARG">
             <label>Country</label>
@@ -20,7 +24,7 @@
             <button class="addbtn btn btn-primary">ADD</button>
         </div>
         <div>
-		    <select name="sortingCountries" class="mt-1 p-1" id="sortingCountries">
+		    <select name="sortingCountries" class="ascAndDscOrder" id="sortingCountries">
                 <option disabled>Please order</option>
                 <option name="ascending" value="ascending">Ascending</option>
                 <option name="descending" value="descending">Descending</option>
@@ -31,6 +35,7 @@
             <ul class="countryList">
             </ul>
         </div>
+
     </div>
 <script src="js/countriesFact.js"></script>
 <script src="js/countries.js"></script>  

@@ -1,6 +1,14 @@
-.body{
-    background-color: beige;
+body{
     width: 100%;
     margin: 0;
     padding: 0;
+}
+
+header{
+    height: 200px;
+    background-image: url('diversity-countries.jpg');
+}
+
+.errors{
+    color: red;
 }

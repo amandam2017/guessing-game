@@ -6,15 +6,12 @@ const AddCountries = (localStorageCountries) =>{
     let myFlags = flags || [];
 
     const setCountries = (addCountry, addFlags) =>{
-        // console.log('showflags'+addFlag)
         if(addCountry && addFlags){
             addCountry = addCountry.charAt(0).toUpperCase() + addCountry.slice(1);
             if(!MyCoutries.includes(addCountry)){
                 MyCoutries.push(addCountry + ' ');
                 myFlags.push(addFlags);
             }
-
-            // console.log('does flags shows as well?'+MyCoutries)
         }
         
         return;
@@ -23,9 +20,9 @@ const AddCountries = (localStorageCountries) =>{
     const getCountries = () => {
         var arrayOfCoutries = []
         for (let i = 0; i < myFlags.length; i++) {
-            const f = myFlags[i];
-            const c = MyCoutries[i];
-            let countriesAndEmojis = `${f}  ${c}`;
+            const theFlags = myFlags[i];
+            const theCountries = MyCoutries[i];
+            let countriesAndEmojis = `${theFlags}  ${theCountries}`;
             arrayOfCoutries.push(countriesAndEmojis);
         }
         // let countriesAndEmojis = `${myFlags}  ${MyCoutries}`;
@@ -34,7 +31,7 @@ const AddCountries = (localStorageCountries) =>{
         return arrayOfCoutries;
     }
 
-    const addingFlagAndCountry = (country) =>{
+    const addingCountry = (country) =>{
         let newCountries = [];
         if(country){
             country = country.charAt(0).toUpperCase() + country.slice(1);
@@ -63,7 +60,7 @@ const AddCountries = (localStorageCountries) =>{
     return{
         setCountries,
         getCountries,
-        addingFlagAndCountry,
+        addingCountry,
         addingFlags,
         sortingAsc,
         sortingDesc
