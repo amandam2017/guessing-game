@@ -59,7 +59,7 @@ const addNewCountry = () => {
 
     if(addedCountries && addedEmoji){
        if(regex.test(addedEmoji)){
-           if(!localStorageCountries.includes(addedEmoji)){
+           if(!localStorageCountries.includes(addedCountries) || !localStorageCountries.includes(addedEmoji)){
             factFun.setCountries(addedCountries);
             let displayCountry = factFun.addingCountry(addedCountries);
             let displayFlags = factFun.addingFlags(addedEmoji);
@@ -72,6 +72,8 @@ const addNewCountry = () => {
          onStorageCountry.push(displayFlags + ' ' + displayCountry);
          localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
 
+           }else{
+                errorsElem.innerHTML = 'Country has already exist in the list!';
            }
 
        }else{
