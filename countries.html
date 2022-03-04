@@ -17,26 +17,29 @@
 
         <div class="inner-container">
         <div class="form-row align-items-center"> 
-            <div class="col-sm-3 my-1">
+            <div class="col my-1">
             <p class="errors"></p>
             <label>Flag</label>
             <input type="emoji" name="yourFlag" class="yourFlag" value="" placeholder="ARG">
             <label>Country</label>
             <input type="text" name="yourCountry" class="yourCountry" value="">
             </div>
-            <div class="col-sm-3 my-1">
+            <div class="col my-1">
                 <button class="addbtn btn btn-primary">ADD</button>
             </div>
 
-		    <select name="sortingCountries" class="ascAndDscOrder col-sm-3 my-1" id="sortingCountries">
+		    <select name="sortingCountries" class="ascAndDscOrder col my-1" id="sortingCountries">
                 <option disabled>Please order</option>
                 <option name="ascending" value="ascending">Ascending</option>
                 <option name="descending" value="descending">Descending</option>
             </select>
+            <div class="col my-1">
+                <input type="text" name="filter" value="" placeholder="Search country" id="search" onkeyup="filterFun()">
+            </div>
         </div>
 
         <div class="existingCountries">
-            <ul class="countryList">
+            <ul class="countryList" id="filteredList">
             </ul>
         </div>
         </div>

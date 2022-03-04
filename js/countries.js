@@ -4,12 +4,14 @@ const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi",
 const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
 
 // let sortedCoutries = countries.sort();
-let sorted = flags.map((flag, index) => {
+let sorted = flags.map((flag, i) => {
 
-    // console.log(flag + ' ' + countries[index])
-    return flag + ' ' + countries[index]
+    // console.log(flag + ' ' + countries[i])
+    return flag + ' ' + countries[i]
     
-})
+});
+
+console.log(sorted)
 
 // REFERENCE ELEMENTS
 const addbtnElem = document.querySelector('.addbtn');
@@ -17,6 +19,8 @@ const yourCountryElem = document.querySelector('.yourCountry');
 const yourFlagElem = document.querySelector('.yourFlag');
 const sortingCountriesElem = document.getElementById('sortingCountries');
 const errorsElem = document.querySelector('.errors');
+const filteredListElem = document.getElementById('filteredList');
+let searchInputElem =  document.getElementById('search');
 
 let localStorageCountries = []; 
 
@@ -24,7 +28,7 @@ if(localStorage['storedCountries']){
     localStorageCountries = JSON.parse(localStorage.getItem('storedCountries'));   
 }
 // factory instance
-let factFun = AddCountries(localStorageCountries);
+// let factFun = AddCountries(localStorageCountries);
 
 const list=(country) =>{
     // console.log('cons country'+country)
@@ -68,7 +72,7 @@ const addNewCountry = () => {
      
          // set local storage
          let onStorageCountry = factFun.getCountries();
-         console.log(onStorageCountry.sort());
+         console.log(onStorageCountry);
          onStorageCountry.push(displayFlags + ' ' + displayCountry);
          localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
 
@@ -105,10 +109,36 @@ const sorting = () =>{
     }
 }
 
+
+const filterFun = () =>{
+
+    var searchInput = searchInputElem.value;
+
+    for (let i = 0; i < sorted.length; i++) {
+        
+        console.log(searchInput);
+        if(searchInput){
+            if(sorted.includes(searchInput)){
+                filteredListElem.innerHTML = searchInput;
+            }
+        }
+        
+    }
+
+}
+// output
+let filteredArray = sorted.filter(filterFun);
+
+console.log(filteredArray)
+
+
 // const onLoad
 
 addbtnElem.addEventListener('click', addNewCountry);
 sortingCountriesElem.addEventListener('change', sorting);
+sortingCountriesElem.addEventListener('keyup', filterFun);
+
+
 
 // Struggled:
 // to display the added country and flag to the local Storage it was only showing the current list of flags and countries
