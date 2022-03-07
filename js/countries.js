@@ -30,6 +30,12 @@ if(localStorage['storedCountries']){
 // factory instance
 let factFun = AddCountries(localStorageCountries);
 
+/**
+ * 
+ * @param {String} country - country and a flag emoji (Brazil 🇧🇷)
+ * @description it create a new li element for existing ul element
+ * then loop through the existing list and display each item in an li
+ */
 const list=(country) =>{
     // console.log('cons country'+country)
     let countryList = document.createElement('li');
@@ -45,10 +51,7 @@ for (let i = 0; i < sorted.length; i++) {
     const countryFlagList = `${countryFlag}`
     list(countryFlagList);
     
-}
-
-
-    
+}    
 
 const regex = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
 
@@ -88,33 +91,59 @@ const addNewCountry = () => {
 };
 
 const sorting = () =>{
-
+    // I first cleared the existing list
+    // Then called the sorting function from the factory function which was bringing the array of objects inside the li 
+    // which was not what I needed because I need each country+flag to be in an li 
+    // So I used a forEach loop to loop through the list and callback a function for each element in an array.
+    // So basically the forEach loop The function will be executed for every single element of the array. It must take at least one parameter which represents the elements of an array:
+    // more about forEach here: https://www.freecodecamp.org/news/javascript-foreach-how-to-loop-through-an-array-in-js/
+    countryListElem.innerHTML = ''
     let ascOrder = sortingCountriesElem.value
     let discOrder = sortingCountriesElem.value
     // console.log(ascOrder, selectedOrder.target.value);
     if('ascending' === ascOrder){
         let selectedAscOrder = factFun.sortingAsc();
-        console.log(selectedAscOrder)
-        list(selectedAscOrder);
+        console.log(selectedAscOrder);
+        selectedAscOrder.forEach(country => {
+            list(country);
+        })
+        // list(selectedAscOrder);
+
         
     } else if('descending' === discOrder){
         let selectedDescOrder = factFun.sortingDesc();
-        console.log(selectedDescOrder)
-        list(selectedDescOrder);
+        selectedDescOrder.forEach(country => {
+            list(country);
+        })
     }
 }
 
 
 const filterFun = () =>{
 
+    countryListElem.innerHTML = ''
     var searchInput = searchInputElem.value;
+    searchInput = searchInput.charAt(0).toUpperCase() + searchInput.slice(1)
+
+    if(searchInput.trim().length < 1) {
+        sorted.forEach(country => {
+            list(country)
+        })
+        // list(sorted)
+        return
+    }
         
     for (let i = 0; i < sorted.length; i++) {
         const countries = sorted[i];
         const countryFlag =   `${countries}`
+        // console.log(countryFlag.includes(searchInput), searchInput)
+
+    
+
         if(countryFlag.includes(searchInput)){
             console.log(countryFlag.includes(searchInput))
             // countryListElem.innerHTML = countryFlag;
+            list(countryFlag)
         }
         
     }
@@ -123,9 +152,9 @@ const filterFun = () =>{
 }
 
 // output
-let filtersorted = sorted.filter(filterFun);
+// let filtersorted = sorted.filter(filterFun);
 
-console.log(filtersorted);
+// console.log(filtersorted);
 
 addbtnElem.addEventListener('click', addNewCountry);
 sortingCountriesElem.addEventListener('change', sorting);
