@@ -4,14 +4,14 @@ const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi",
 const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
 
 // let sortedCoutries = countries.sort();
-let sorted = flags.map((flag, i) => {
+let sorted = countries.map((country, i) => {
 
     // console.log(flag + ' ' + countries[i])
-    return flag + ' ' + countries[i]
+    return country + ' ' + flags[i]
     
 });
 
-console.log(sorted)
+// console.log(sorted)
 
 // REFERENCE ELEMENTS
 const addbtnElem = document.querySelector('.addbtn');
@@ -28,7 +28,7 @@ if(localStorage['storedCountries']){
     localStorageCountries = JSON.parse(localStorage.getItem('storedCountries'));   
 }
 // factory instance
-// let factFun = AddCountries(localStorageCountries);
+let factFun = AddCountries(localStorageCountries);
 
 const list=(country) =>{
     // console.log('cons country'+country)
@@ -40,21 +40,17 @@ const list=(country) =>{
     countryListElem.appendChild(countryList);
 }
 
-for (let i = 0; i < countries.length; i++) {
-    const flagsEmojis = flags[i];
-    const countryNames = countries[i];
-    // used the template string to display both flags and countries
-    let countriesAndEmojis = `${countryNames}  ${flagsEmojis}`;
-
-    list(countriesAndEmojis);
+for (let i = 0; i < sorted.length; i++) {
+    const countryFlag = sorted[i];
+    const countryFlagList = `${countryFlag}`
+    list(countryFlagList);
+    
 }
 
+
+    
+
 const regex = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
-// const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
-console.log(flags.length);
-console.log(regex);
-console.log(regex.test(flags));
-// console.log(flags.match(regex));
 
 const addNewCountry = () => {
 
@@ -73,7 +69,7 @@ const addNewCountry = () => {
          // set local storage
          let onStorageCountry = factFun.getCountries();
          console.log(onStorageCountry);
-         onStorageCountry.push(displayFlags + ' ' + displayCountry);
+         onStorageCountry.push(displayCountry + ' ' + displayFlags);
          localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
 
            }else{
@@ -95,7 +91,6 @@ const sorting = () =>{
 
     let ascOrder = sortingCountriesElem.value
     let discOrder = sortingCountriesElem.value
-    // let dscOrder = document.querySelector("input[name ='descending']:checked");
     // console.log(ascOrder, selectedOrder.target.value);
     if('ascending' === ascOrder){
         let selectedAscOrder = factFun.sortingAsc();
@@ -113,26 +108,24 @@ const sorting = () =>{
 const filterFun = () =>{
 
     var searchInput = searchInputElem.value;
-
-    for (let i = 0; i < sorted.length; i++) {
         
-        console.log(searchInput);
-        if(searchInput){
-            if(sorted.includes(searchInput)){
-                filteredListElem.innerHTML = searchInput;
-            }
+    for (let i = 0; i < sorted.length; i++) {
+        const countries = sorted[i];
+        const countryFlag =   `${countries}`
+        if(countryFlag.includes(searchInput)){
+            console.log(countryFlag.includes(searchInput))
+            // countryListElem.innerHTML = countryFlag;
         }
         
     }
+        
 
 }
+
 // output
-let filteredArray = sorted.filter(filterFun);
+let filtersorted = sorted.filter(filterFun);
 
-console.log(filteredArray)
-
-
-// const onLoad
+console.log(filtersorted);
 
 addbtnElem.addEventListener('click', addNewCountry);
 sortingCountriesElem.addEventListener('change', sorting);

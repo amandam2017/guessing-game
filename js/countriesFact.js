@@ -2,13 +2,13 @@ const AddCountries = (localStorageCountries) =>{
     const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
     const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
     
-    let sorted = flags.map((flag, index) => {
+    let sorted = countries.map((country, index) => {
 
         // console.log(flag + ' ' + countries[index])
-        return flag + ' ' + countries[index]
+        return country + ' ' + flags[index]
         
     });
-    console.log(sorted);
+    // console.log(sorted);
 
     let MyCoutries = countries || [];
     let myFlags = flags || [];
@@ -30,10 +30,9 @@ const AddCountries = (localStorageCountries) =>{
         for (let i = 0; i < myFlags.length; i++) {
             const theFlags = myFlags[i];
             const theCountries = MyCoutries[i];
-            let countriesAndEmojis = `${theFlags}  ${theCountries}`;
+            let countriesAndEmojis = `${theCountries}  ${theFlags}`;
             arrayOfCoutries.push(countriesAndEmojis);
         }
-        // let countriesAndEmojis = `${myFlags}  ${MyCoutries}`;
         console.log('???'+arrayOfCoutries)
 
         return arrayOfCoutries;
@@ -48,14 +47,6 @@ const AddCountries = (localStorageCountries) =>{
         }
     }
 
-    const sortingAsc = (order) =>{
-        return countries.sort();
-    }
-
-    const sortingDesc = (order) =>{
-        return countries.sort().reverse();
-    }
-
     const addingFlags = (flags) =>{
         let newFlags = [];
         if(flags){
@@ -64,12 +55,17 @@ const AddCountries = (localStorageCountries) =>{
         }
     }
 
+    const sortingAsc = (order) =>{
+        return sorted.sort();
+    }
+
+    const sortingDesc = (order) =>{
+        return sorted.sort().reverse();
+    }
+
+    // spread operator
     const flagsAndCountries = [...countries, ...flags];
-    console.log(flagsAndCountries[0])
-
-    // const myFilter = ()=>{
-
-    // }
+    // console.log(flagsAndCountries)
 
     return{
         setCountries,
