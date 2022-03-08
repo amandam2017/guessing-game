@@ -13,7 +13,7 @@ let sorted = countries.map((country, i) => {
     
 });
 
-console.log(sorted)
+console.log(sorted);
 
 // REFERENCE ELEMENTS
 const addbtnElem = document.querySelector('.addbtn');
@@ -32,14 +32,8 @@ if(localStorage['storedCountries']){
 // factory instance
 let factFun = AddCountries(localStorageCountries);
 
-/**
- * 
- * @param {String} country - country and a flag emoji (Brazil 🇧🇷)
- * @description it create a new li element for existing ul element
- * then loop through the existing list and display each item in an li
- */
 const list=(country) =>{
-    // console.log('cons country'+country)
+    // console.log('const country'+country);
     let countryList = document.createElement('li');
     let content = document.createTextNode(country);
 
@@ -126,7 +120,6 @@ const sorting = () =>{
     // console.log(ascOrder, selectedOrder.target.value);
     if('ascending' === ascOrder){
         let selectedAscOrder = factFun.sortingAsc();
-        console.log(selectedAscOrder);
         selectedAscOrder.forEach(country => {
             list(country);
         })
@@ -160,8 +153,6 @@ const filterFun = () =>{
         }
         
     }
-        
-
 }
 
 addbtnElem.addEventListener('click', addNewCountry);
