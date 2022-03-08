@@ -147,21 +147,11 @@ const filterFun = () =>{
     countryListElem.innerHTML = ''
     var searchInput = searchInputElem.value;
     searchInput = searchInput.charAt(0).toUpperCase() + searchInput.slice(1)
-
-    if(searchInput.trim().length < 1) {
-        sorted.forEach(country => {
-            list(country)
-        })
-        // list(sorted)
-        return
-    }
         
     for (let i = 0; i < sorted.length; i++) {
         const countries = sorted[i];
         const countryFlag =   `${countries}`
-        // console.log(countryFlag.includes(searchInput), searchInput)
-
-    
+        console.log(countryFlag)
 
         if(countryFlag.includes(searchInput)){
             console.log(countryFlag.includes(searchInput))
