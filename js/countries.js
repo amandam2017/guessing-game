@@ -1,8 +1,10 @@
 const countryListElem = document.querySelector('.countryList');
+const showFlagsElem = document.querySelector('.showFlags');
 
 const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
 const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
 
+const flagsToChoseFrom = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭", "🇦🇩", "🇦🇴", "🇧🇬"];
 // let sortedCoutries = countries.sort();
 let sorted = countries.map((country, i) => {
 
@@ -11,7 +13,7 @@ let sorted = countries.map((country, i) => {
     
 });
 
-// console.log(sorted)
+console.log(sorted)
 
 // REFERENCE ELEMENTS
 const addbtnElem = document.querySelector('.addbtn');
@@ -44,6 +46,26 @@ const list=(country) =>{
     countryList.appendChild(content);
 
     countryListElem.appendChild(countryList);
+    // showFlagsElem.appendChild(countryList);
+
+}
+
+const flagsList=(flags) =>{
+    // console.log('cons country'+country)
+    let flagList = document.createElement('li');
+    let content = document.createTextNode(flags);
+
+    flagList.appendChild(content);
+
+    // countryListElem.appendChild(countryList);
+    showFlagsElem.appendChild(flagList);
+
+}
+
+for (let i = 0; i < flagsToChoseFrom.length; i++) {
+    const list = flagsToChoseFrom[i];
+    flagsList(list);
+    
 }
 
 for (let i = 0; i < sorted.length; i++) {
@@ -89,6 +111,7 @@ const addNewCountry = () => {
     }
 
 };
+          
 
 const sorting = () =>{
     // I first cleared the existing list
@@ -150,11 +173,6 @@ const filterFun = () =>{
         
 
 }
-
-// output
-// let filtersorted = sorted.filter(filterFun);
-
-// console.log(filtersorted);
 
 addbtnElem.addEventListener('click', addNewCountry);
 sortingCountriesElem.addEventListener('change', sorting);

@@ -2,6 +2,7 @@ body{
     width: 100%;
     margin: 0;
     padding: 0;
+    background-color: rgb(169, 196, 196);
 }
 
 header{
@@ -9,6 +10,17 @@ header{
     background-image: url('diversity-countries.jpg');
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.showFlags{
+    width: 65%;
+    margin: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .errors{
