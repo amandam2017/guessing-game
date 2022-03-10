@@ -2,9 +2,10 @@ const countryListElem = document.querySelector('.countryList');
 const showFlagsElem = document.querySelector('.showFlags');
 
 const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
+
 const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
 
-const flagsToChoseFrom = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭", "🇦🇩", "🇦🇴", "🇧🇬"];
+const flagsToChoseFrom = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭", "🇦🇩", "🇦🇴", "🇧🇬", "🇦🇼", "🇦🇹", "🇧🇮", "🇧🇯"];
 // let sortedCoutries = countries.sort();
 let sorted = countries.map((country, i) => {
 
@@ -13,7 +14,7 @@ let sorted = countries.map((country, i) => {
     
 });
 
-console.log(sorted);
+// console.log(sorted);
 
 // REFERENCE ELEMENTS
 const addbtnElem = document.querySelector('.addbtn');
@@ -28,10 +29,10 @@ let localStorageCountries = [];
 
 if(localStorage['storedCountries']){
     localStorageCountries = JSON.parse(localStorage.getItem('storedCountries'));   
+    sorted = localStorageCountries;
 }
 // factory instance
 let factFun = AddCountries(localStorageCountries);
-
 const list=(country) =>{
     // console.log('const country'+country);
     let countryList = document.createElement('li');
@@ -56,18 +57,16 @@ const flagsList=(flags) =>{
 
 }
 
+for (var i = 0; i < sorted.length; i++) {
+    const countryFlag = sorted[i];
+     list(countryFlag);    
+}
+
 for (let i = 0; i < flagsToChoseFrom.length; i++) {
     const list = flagsToChoseFrom[i];
     flagsList(list);
     
 }
-
-for (let i = 0; i < sorted.length; i++) {
-    const countryFlag = sorted[i];
-    const countryFlagList = `${countryFlag}`
-    list(countryFlagList);
-    
-}    
 
 const regex = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
 
@@ -78,7 +77,7 @@ const addNewCountry = () => {
 
     if(addedCountries && addedEmoji){
        if(regex.test(addedEmoji)){
-           if(!localStorageCountries.includes(addedCountries) || !localStorageCountries.includes(addedEmoji)){
+           if(!localStorageCountries.includes(addedCountries) && !localStorageCountries.includes(addedEmoji)){
             factFun.setCountries(addedCountries);
             let displayCountry = factFun.addingCountry(addedCountries);
             let displayFlags = factFun.addingFlags(addedEmoji);
@@ -86,21 +85,22 @@ const addNewCountry = () => {
              list(displayCountry + ' ' + displayFlags);
      
          // set local storage
-         let onStorageCountry = factFun.getCountries();
-         console.log(onStorageCountry);
-         onStorageCountry.push(displayCountry + ' ' + displayFlags);
-         localStorage.setItem('storedCountries', JSON.stringify(onStorageCountry));
+
+         flags.push(displayFlags); 
+         countries.push(displayCountry);
+         sorted.push(displayCountry + ' ' + displayFlags)
+         localStorage.setItem('storedCountries', JSON.stringify(sorted));
 
            }else{
                 errorsElem.innerHTML = 'Country has already exist in the list!';
            }
 
        }else{
-        errorsElem.innerHTML = 'Please insert flag emoji';
+        errorsElem.innerHTML = factFun.testingRegex();
        }
 
     }else{
-        errorsElem.innerHTML = 'Please enter a country and paste flag imoji';
+        errorsElem.innerHTML = factFun.errors();
 
     }
 

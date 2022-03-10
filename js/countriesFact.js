@@ -1,7 +1,8 @@
 const AddCountries = (localStorageCountries) =>{
     const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
     const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
-    
+    const regex = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
+    console.log(localStorageCountries);
     let sorted = countries.map((country, index) => {
 
         // console.log(flag + ' ' + countries[index])
@@ -42,7 +43,7 @@ const AddCountries = (localStorageCountries) =>{
         let newCountries = [];
         if(country){
             country = country.charAt(0).toUpperCase() + country.slice(1);
-
+            // console.log(newCountries += country);
             return newCountries += country;
         }
     }
@@ -56,11 +57,40 @@ const AddCountries = (localStorageCountries) =>{
     }
 
     const sortingAsc = (order) =>{
+        console.log(sorted.sort());
         return sorted.sort();
     }
 
     const sortingDesc = (order) =>{
         return sorted.sort().reverse();
+    }
+
+    const errors = (country, flag) =>{
+        let noFlagEmoji = 'Please enter flag emoji';
+        let noCountry = 'Please enter a country';
+        let noCountryAndFlag = 'Please copy and paste flag emoji and enter a country';
+
+        if(!country && !flag){
+            return noCountryAndFlag;
+        }
+        if(!flag){
+            return noFlagEmoji
+
+        }else if(!country){
+            return noCountry
+        }else{
+            return '';
+        }
+
+    }
+
+    const testingRegex = (myflags) =>{
+        let emojiTestRegex = 'Please only insert flag emoji';
+        let testMatchingRegex = regex.test(myflags);
+
+        if(!testMatchingRegex){
+            return emojiTestRegex;
+        }
     }
 
     // spread operator
@@ -74,6 +104,8 @@ const AddCountries = (localStorageCountries) =>{
         addingFlags,
         sortingAsc,
         sortingDesc,
+        errors,
+        testingRegex
     }
 }
 
