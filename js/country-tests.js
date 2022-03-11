@@ -1,14 +1,17 @@
 describe('unit test for country flag', function(){
     it('should be able to set and get country', function(){
         let factFun = AddCountries();
+
         factFun.setCountries('Ireland 🇮🇪');
-        assert.equal('Brazil 🇧🇷', factFun.getCountries());
+        let getcountry = factFun.getCountries('Ireland 🇮🇪');
+        assert.equal(getcountry, factFun.getCountries());
     })
-    it('should add a new country which is Brazi', function(){
+    it('should add a new country which is Brazil', function(){
         let factFun = AddCountries();
 
         factFun.addingCountry('Brazil 🇧🇷');
-        assert.equal('Brazil 🇧🇷', factFun.getCountries());
+        let addedC = factFun.getCountries('Brazil 🇧🇷');
+        assert.equal(addedC, factFun.getCountries());
 
     })
     it('should return error message when a text is entered instead of the flag emoji', function(){

@@ -59,31 +59,12 @@ const AddCountries = (localStorageCountries) =>{
         return sorted.sort().reverse();
     }
 
-    const exist = []; 
-        localStorageCountries.forEach(country => exist[country] ? 
-        console.log('country that exist is:'+ country) : exist[country] = true);
-
     const errors = (country, flag) =>{
-        // let noFlagEmoji = 'Please enter flag emoji';
-        // let noCountry = 'Please enter a country';
-        // let noCountryAndFlag = 'Please copy and paste flag emoji and enter a country';
-        let duplicate = 'Country Already exist';
+        let noCountryAndFlag = 'Please copy and paste flag emoji and enter a country';
 
-        if(localStorageCountries.includes(country) && localStorageCountries.includes(flag)){
-            console.log(sorted)
-            return duplicate;
+        if(!country && !flag){
+            return noCountryAndFlag;
         }
-        // if(!country && !flag){
-        //     return noCountryAndFlag;
-        // }
-        // if(!flag){
-        //     return noFlagEmoji
-
-        // }else if(!country){
-        //     return noCountry
-        // }else{
-        //     return '';
-        // }
 
     }
 

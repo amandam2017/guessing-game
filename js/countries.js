@@ -60,17 +60,6 @@ for (var i = 0; i < sorted.length; i++) {
     list(countryFlag);
 }
 
-
-// for (var i = 0; i < sorted.length; i++) {
-//     const countryFlag = sorted[i];
-//     list(countryFlag);    
-// }
-
-// let uniqueCountries = new Set(localStorageCountries);
-// sorted = uniqueCountries;
-
-
-
 const regex = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
 
 const addNewCountry = () => {
@@ -94,7 +83,7 @@ const addNewCountry = () => {
 
             }
             else {
-                errorsElem.innerHTML = factFun.errors // factFun.errors(addedCountries, addedEmoji);
+                errorsElem.innerHTML = 'Already exists' // factFun.errors(addedCountries, addedEmoji);
             }
 
         } else {
@@ -113,7 +102,7 @@ const sorting = () => {
     countryListElem.innerHTML = ''
     let ascOrder = sortingCountriesElem.value
     let discOrder = sortingCountriesElem.value
-    // console.log(ascOrder, selectedOrder.target.value);
+
     if ('ascending' === ascOrder) {
         let selectedAscOrder = factFun.sortingAsc();
         selectedAscOrder.forEach(country => {
