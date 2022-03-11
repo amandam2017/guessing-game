@@ -1,15 +1,13 @@
 const AddCountries = (localStorageCountries) =>{
+    // console.log(localStorageCountries);
     const countries = ["Argentina", "Brazil", "Chile", "Zambia", "Uganda", "Malawi", "Rwanda", "Ireland", "Switzerland"];
     const flags = ["🇦🇷", "🇧🇷", "🇨🇱", "🇿🇲", "🇺🇬", "🇲🇼", "🇷🇼", "🇮🇪", "🇨🇭"];
     const regex = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
-    console.log(localStorageCountries);
-    let sorted = countries.map((country, index) => {
 
-        // console.log(flag + ' ' + countries[index])
-        return country + ' ' + flags[index]
+    let sorted = countries.map((country, i) => {
+        return country + ' ' + flags[i]
         
     });
-    // console.log(sorted);
 
     let MyCoutries = countries || [];
     let myFlags = flags || [];
@@ -17,47 +15,43 @@ const AddCountries = (localStorageCountries) =>{
     const setCountries = (addCountry, addFlags) =>{
         if(addCountry && addFlags){
             addCountry = addCountry.charAt(0).toUpperCase() + addCountry.slice(1);
-            // if(!MyCoutries.includes(addCountry)){
+            if(!MyCoutries.includes(addCountry) || !MyCoutries.includes(addFlags)){
+                console.log(MyCoutries)
                 MyCoutries.push(addCountry + ' ');
                 myFlags.push(addFlags);
-            // }
+            }
         }
         
         return ;
     }
     
     const getCountries = () => {
-        var arrayOfCoutries = []
-        for (let i = 0; i < myFlags.length; i++) {
-            const theFlags = myFlags[i];
-            const theCountries = MyCoutries[i];
-            let countriesAndEmojis = `${theCountries}  ${theFlags}`;
-            arrayOfCoutries.push(countriesAndEmojis);
-        }
-        console.log('???'+arrayOfCoutries)
+        // flags.push(displayFlags); 
+        // countries.push(displayCountry);
+        // console.log('???'+sorted);
 
-        return arrayOfCoutries;
+        return sorted;
     }
 
     const addingCountry = (country) =>{
         let newCountries = [];
-        if(country){
+        // if(!sorted.include(country)){
             country = country.charAt(0).toUpperCase() + country.slice(1);
-            // console.log(newCountries += country);
-            return newCountries += country;
-        }
+            newCountries.push(country)
+            return newCountries;
+        // }
     }
 
     const addingFlags = (flags) =>{
         let newFlags = [];
-        if(flags){
-            return newFlags += flags;
+        if(!sorted.includes(flags)){
+            newFlags.push(flags);
+            return newFlags;
 
         }
     }
 
     const sortingAsc = (order) =>{
-        console.log(sorted.sort());
         return sorted.sort();
     }
 
@@ -65,22 +59,31 @@ const AddCountries = (localStorageCountries) =>{
         return sorted.sort().reverse();
     }
 
+    const exist = []; 
+        localStorageCountries.forEach(country => exist[country] ? 
+        console.log('country that exist is:'+ country) : exist[country] = true);
+
     const errors = (country, flag) =>{
-        let noFlagEmoji = 'Please enter flag emoji';
-        let noCountry = 'Please enter a country';
-        let noCountryAndFlag = 'Please copy and paste flag emoji and enter a country';
+        // let noFlagEmoji = 'Please enter flag emoji';
+        // let noCountry = 'Please enter a country';
+        // let noCountryAndFlag = 'Please copy and paste flag emoji and enter a country';
+        let duplicate = 'Country Already exist';
 
-        if(!country && !flag){
-            return noCountryAndFlag;
+        if(localStorageCountries.includes(country) && localStorageCountries.includes(flag)){
+            console.log(sorted)
+            return duplicate;
         }
-        if(!flag){
-            return noFlagEmoji
+        // if(!country && !flag){
+        //     return noCountryAndFlag;
+        // }
+        // if(!flag){
+        //     return noFlagEmoji
 
-        }else if(!country){
-            return noCountry
-        }else{
-            return '';
-        }
+        // }else if(!country){
+        //     return noCountry
+        // }else{
+        //     return '';
+        // }
 
     }
 
@@ -92,6 +95,8 @@ const AddCountries = (localStorageCountries) =>{
             return emojiTestRegex;
         }
     }
+
+    
 
     // spread operator
     const flagsAndCountries = [...countries, ...flags];
@@ -105,7 +110,8 @@ const AddCountries = (localStorageCountries) =>{
         sortingAsc,
         sortingDesc,
         errors,
-        testingRegex
+        testingRegex,
+        // display
     }
 }
 
